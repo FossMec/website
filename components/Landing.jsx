@@ -20,14 +20,13 @@ const Landing = () => {
       <div className="z-10 max-w-[80%] -ml-13 max-md:text-center w-full px-4 flex flex-col items-start">
         <div className="flex flex-col items-start text-center md:text-left">
           <h1 className="text-[38px] md:text-5xl lg:text-7xl xl:text-[95px] font-uncut-sans font-extrabold leading-[1]">
-            OPEN SOURCE SOFTWARE FOUNDATION
+            FOSSMEC — Where Innovation Meets Openness
           </h1>
         </div>
 
         <p className="text-sm max-sm:leading-[1.5] md:text-sm lg:text-md xl:text-[18px] font-dm-mono italic mt-5 leading-[32px] max-w-full md:max-w-4/5 uppercase text-[#DAE2E9E0] opacity-88">
-          FOSS MEC IS A NON-PROFIT FOUNDATION THAT AIMS AT PROMOTING AND
-          STRENGTHENING THE FREE AND OPEN SOURCE SOFTWARE (FOSS) ECOSYSTEM AMONG
-          MECIANS
+          A community driven by curiosity, collaboration, and creativity —
+          empowering the innovators of tomorrow at Model Engineering College.
         </p>
       </div>
     </div>

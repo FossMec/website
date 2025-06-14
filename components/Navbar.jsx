@@ -105,7 +105,12 @@ const Navbar = () => {
           >
             TEAM
           </a>
-          <div className="relative cursor-pointer group before:absolute before:min-h-[19px] before:min-w-[19px] before:border-[#FFD022] before:border-t before:border-l before:top-[-10px] before:left-[-10px] before:transition-all before:duration-300 after:absolute after:h-[19px] after:w-[19px] after:border-[#FFD022] after:border-t after:border-r after:top-[-10px] after:right-[-10px] after:transition-all after:duration-300 hover:before:top-[-1px] hover:before:left-[-1px] hover:before:min-h-[10px] hover:before:min-w-[10px] hover:before:border-t-2 hover:before:border-l-2 hover:after:top-[-1px] hover:after:right-[-1px] hover:after:h-[10px] hover:after:w-[10px] hover:after:border-t-2 hover:after:border-r-2">
+          <div
+            className="relative cursor-pointer group before:absolute before:min-h-[19px] before:min-w-[19px] before:border-[#FFD022] before:border-t before:border-l before:top-[-10px] before:left-[-10px] before:transition-all before:duration-300 after:absolute after:h-[19px] after:w-[19px] after:border-[#FFD022] after:border-t after:border-r after:top-[-10px] after:right-[-10px] after:transition-all after:duration-300 hover:before:top-[-1px] hover:before:left-[-1px] hover:before:min-h-[10px] hover:before:min-w-[10px] hover:before:border-t-2 hover:before:border-l-2 hover:after:top-[-1px] hover:after:right-[-1px] hover:after:h-[10px] hover:after:w-[10px] hover:after:border-t-2 hover:after:border-r-2"
+            onClick={() =>
+              window.open("https://t.me/joinchat/_wHtSpuMBQxhODhl", "_blank")
+            }
+          >
             <div className="absolute h-full w-full before:absolute before:min-h-[19px] before:min-w-[19px] before:border-[#FFD022] before:border-b before:border-l before:bottom-[-10px] before:left-[-10px] before:transition-all before:duration-300 after:absolute after:h-[19px] after:w-[19px] after:border-[#FFD022] after:border-b after:border-r after:bottom-[-10px] after:right-[-10px] after:transition-all after:duration-300 group-hover:before:bottom-[-1px] group-hover:before:left-[-1px] group-hover:before:min-h-[10px] group-hover:before:min-w-[10px] group-hover:before:border-b-2 group-hover:before:border-l-2 group-hover:after:bottom-[-1px] group-hover:after:right-[-1px] group-hover:after:h-[10px] group-hover:after:w-[10px] group-hover:after:border-b-2 group-hover:after:border-r-2" />
             <button className="bg-[#FFD022] font-semibold text-[14px] px-5 py-2 text-[#0C2444]">
               JOIN FOSS

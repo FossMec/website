@@ -17,14 +17,11 @@ const About = () => {
 
         {/* Paragraph */}
         <p className="text-white lg:text-[25px] sm:text-xl leading-relaxed font-mono">
-          We craft exceptional apparel and accessories, merging cutting-edge
-          design with timeless elegance.
+        We’re a vibrant community of innovators, problem-solvers, and lifelong learners who celebrate Free and Open Source Software (FOSS) and its power to connect, empower, and transform.
           <br />
           <br />
-          We develop and maintain open-source software projects with a focus on
-          empowering both users and developers. Our mission is to create tools
-          that are not only innovative but also free, transparent, and welcoming
-          to all.
+          Whether you’re a beginner eager to learn, a coder looking to collaborate, or a creative soul with a passion for technology, FOSSMEC is your launchpad into the world of FOSS.
+          Here, you can grow your skills, contribute to impactful projects, and make friendships that last a lifetime.
         </p>
       </div>
     </div>
