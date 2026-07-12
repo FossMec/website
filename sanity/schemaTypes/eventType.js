@@ -36,6 +36,12 @@ export const eventType = defineType({
       type: 'number',
     }),
     defineField({
+      name: 'date',
+      title: 'Date',
+      type: 'datetime',
+      description: 'Used for sorting events (not displayed). Most recent first.',
+    }),
+    defineField({
       name: 'date_label',
       title: 'Date Label',
       type: 'string',

@@ -172,11 +172,12 @@ const Events = () => {
         setLoading(true);
 
         const data = await client.fetch(`
-          *[_type == "event"]{
+          *[_type == "event"] | order(date desc){
             _id,
             name,
             event_short_desc,
             year,
+            date,
             date_label,
             "slug": slug.current,
             cover_image{
