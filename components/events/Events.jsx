@@ -17,7 +17,7 @@ const Events = () => {
   const [allEvents, setAllEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [selectedYear, setSelectedYear] = useState("");
   const [isInitialized, setIsInitialized] = useState(false);
 
   const calculateContainerHeight = (cardCount) => {
@@ -177,6 +177,7 @@ const Events = () => {
             name,
             event_short_desc,
             year,
+            date_label,
             "slug": slug.current,
             cover_image{
               asset->{
@@ -195,6 +196,7 @@ const Events = () => {
             image: event.cover_image.asset.url,
             backContent: event.event_short_desc,
             year: parseInt(event.year),
+            date_label: event.date_label,
           }));
 
           const availableYears = [...new Set(mappedEvents.map((e) => e.year))].sort(
@@ -229,12 +231,17 @@ const Events = () => {
     setCards(applyPositions(filtered));
   };
 
-  // Get unique years from events
-  const getUniqueYears = () => {
-    const years = [...new Set(allEvents.map((event) => event.year))].sort(
-      (a, b) => b - a
-    );
-    return years;
+  // Get unique years with labels from events
+  const getYearOptions = () => {
+    const yearMap = {};
+    allEvents.forEach((event) => {
+      if (!yearMap[event.year]) {
+        yearMap[event.year] = event.date_label || `Events ${event.year}`;
+      }
+    });
+    return Object.entries(yearMap)
+      .sort(([a], [b]) => b - a)
+      .map(([year, label]) => ({ year: Number(year), label }));
   };
 
   // Recalculate positions on window resize
@@ -289,13 +296,13 @@ const Events = () => {
                 onChange={(e) => filterEventsByYear(e.target.value)}
                 className="bg-transparent border-2 border-[#DAE2E9E0]/12 rounded-xs px-4 py-2 pr-12 text-[#DAE2E9E0] focus:outline-none transition-colors cursor-pointer appearance-none w-full"
               >
-                {getUniqueYears().map((year) => (
+                {getYearOptions().map(({ year, label }) => (
                   <option
                     key={year}
                     value={year.toString()}
                     className="bg-[#1a1a1a] text-[#DAE2E9E0]"
                   >
-                    Events {year} - {year+1}
+                    {label}
                   </option>
                 ))}
               </select>

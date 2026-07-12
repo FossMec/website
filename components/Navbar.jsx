@@ -36,7 +36,7 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
         }`}
     >
       <div className="flex items-center justify-between w-full">
-        <a href={isEventPage ? "/" : "#home"}>
+        <a href={isEventPage ? "/#home" : "#home"}>
           <Image src={logo} alt="FOSSMEC Logo" className="h-[85px] w-[85px]" />
         </a>
 
@@ -82,19 +82,19 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
 
         <div className="hidden md:flex items-center gap-10 font-martian-mono">
           <a
-            href={isEventPage ? "/" : "#home"}
+            href={isEventPage ? "/#home" : "#home"}
             className="text-[14px] hover:text-white/80 transition-colors"
           >
             HOME
           </a>
           <a
-            href={isEventPage ? "/" : "#about"}
+            href={isEventPage ? "/#about" : "#about"}
             className="text-[14px] hover:text-white/80 transition-colors"
           >
             ABOUT
           </a>
           <a
-            href={isEventPage ? "/" : "#events"}
+            href={isEventPage ? "/#events" : "#events"}
             className="text-[14px] hover:text-white/80 transition-colors"
             onClick={(e) => {
               if (isEventPage && onEventTitleClick) {
@@ -116,7 +116,7 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
             )}
           </a>
           <a
-            href={isEventPage ? "/" : "#team"}
+            href={isEventPage ? "/#team" : "#team"}
             className="text-[14px] hover:text-white/80 transition-colors mr-7"
           >
             TEAM
@@ -143,21 +143,21 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
         } flex flex-col items-center gap-5 font-martian-mono`}
       >
         <a
-          href={isEventPage ? "/" : "#home"}
+          href={isEventPage ? "/#home" : "#home"}
           className="text-[14px] hover:text-white/80 transition-colors"
           onClick={() => setMobileMenuOpen(false)}
         >
           HOME
         </a>
         <a
-          href={isEventPage ? "/" : "#about"}
+          href={isEventPage ? "/#about" : "#about"}
           className="text-[14px] hover:text-white/80 transition-colors"
           onClick={() => setMobileMenuOpen(false)}
         >
           ABOUT
         </a>
         <a
-          href={isEventPage ? "/" : "#events"}
+          href={isEventPage ? "/#events" : "#events"}
           className="text-[14px] hover:text-white/80 transition-colors"
           onClick={(e) => {
             setMobileMenuOpen(false);
@@ -180,7 +180,7 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
           )}
         </a>
         <a
-          href={isEventPage ? "/" : "#team"}
+          href={isEventPage ? "/#team" : "#team"}
           className="text-[14px] hover:text-white/80 transition-colors"
           onClick={() => setMobileMenuOpen(false)}
         >

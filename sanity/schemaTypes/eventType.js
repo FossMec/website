@@ -36,6 +36,12 @@ export const eventType = defineType({
       type: 'number',
     }),
     defineField({
+      name: 'date_label',
+      title: 'Date Label',
+      type: 'string',
+      description: 'Optional custom label e.g. "March 2025", "2024-2025". Falls back to year number if empty.',
+    }),
+    defineField({
       name: 'cover_image',
       title: 'Cover Image',
       type: 'image',
