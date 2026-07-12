@@ -262,7 +262,7 @@ const EventDetailsPage = () => {
                     {(event.year || event.date_label) && (
                       <div>
                         <span className="font-martian-mono text-xs sm:text-sm text-[#ABA9A7] uppercase tracking-wider">
-                          Year
+                          {event.date_label ? "Date" : "Year"}
                         </span>
                         <p className="font-martian-mono text-sm sm:text-base text-white mt-1">
                           {event.date_label || event.year}
