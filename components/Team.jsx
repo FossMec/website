@@ -1,27 +1,39 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TeamsCard from "./TeamsCard";
-import {
-  TEAM2022,
-  TEAM2023,
-  TEAM2024,
-  TEAM2021,
-  TEAM2020,
-  TEAM2025,
-} from "@/constants";
+import { fetchTeamYears } from "@/sanity/lib/fetchTeam";
 
 const Team = () => {
-  const [selectedYear, setSelectedYear] = useState("2025");
+  const [selectedYear, setSelectedYear] = useState(null);
+  const [sanityYears, setSanityYears] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const teamsByYear = {
-    2025: TEAM2025,
-    2024: TEAM2024,
-    2023: TEAM2023,
-    2022: TEAM2022,
-    2021: TEAM2021,
-    2020: TEAM2020,
-  };
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const data = await fetchTeamYears();
+        setSanityYears(data || []);
+        if (data && data.length > 0) {
+          setSelectedYear(data[0].year);
+        }
+      } catch {
+        console.error("Failed to fetch team years from Sanity");
+      } finally {
+        setLoading(false);
+      }
+    };
+    load();
+  }, []);
+
+  const sanityYear = sanityYears.find((y) => y.year === selectedYear);
+  const members = sanityYear
+    ? sanityYear.members.map((m, i) => ({
+        id: i,
+        ...m,
+        img: m.image,
+      }))
+    : [];
 
   return (
     <div
@@ -39,19 +51,28 @@ const Team = () => {
         <div className="w-fit mt-6 max-md:scale-90">
           <div className="relative">
             <select
-              value={selectedYear}
-              onChange={(e) => setSelectedYear(e.target.value)}
+              value={selectedYear || ""}
+              onChange={(e) => setSelectedYear(Number(e.target.value))}
               className="bg-transparent border-2 border-[#DAE2E9E0]/10 px-4 py-2 pr-12 text-[#DAE2E9E0] focus:outline-none transition-colors cursor-pointer appearance-none w-full"
             >
-              {[...Object.keys(teamsByYear)].reverse().map((year) => (
+              {loading ? (
                 <option
-                  key={year}
-                  value={year}
+                  value=""
                   className="bg-[#1a1a1a] text-[#DAE2E9E0]"
                 >
-                  Core {year}
+                  Loading...
                 </option>
-              ))}
+              ) : (
+                sanityYears.map((entry) => (
+                  <option
+                    key={entry.year}
+                    value={entry.year}
+                    className="bg-[#1a1a1a] text-[#DAE2E9E0]"
+                  >
+                    Core {entry.year}
+                  </option>
+                ))
+              )}
             </select>
             <div className="absolute right-2.5 top-1/2 transform -translate-y-1/2 pointer-events-none">
               <svg
@@ -71,7 +92,7 @@ const Team = () => {
       </div>
       <div className="xl:h-20 lg:h-16 h-12" />
       <div className="flex flex-wrap justify-center gap-6 w-full mb-20 max-w-[90%]">
-        {teamsByYear[selectedYear].map((item) => (
+        {members.map((item) => (
           <TeamsCard
             key={item.id}
             img={item?.img}

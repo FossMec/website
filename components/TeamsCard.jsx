@@ -3,8 +3,13 @@ import Image from "next/image";
 import NoImage from "@/assets/noimg.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { urlFor } from "@/sanity/lib/image";
 
 function TeamsCard({ img, name, position, linkedin, github }) {
+  const imgSrc = img
+    ? urlFor(img).width(176).format("webp").url()
+    : NoImage;
+
   return (
     <div className="relative overflow-hidden w-[176px] h-[240px] before:w-full before:h-full before:bg-white/6 before:top-0 before:left-0 before:absolute before:-translate-y-full before:transition-all before:duration-[0.75s] hover:before:translate-y-0 transition-transform duration-300 hover:scale-105 max-sm:w-[150px] max-sm:h-[230px]">
       <div className="w-full h-full flex flex-col justify-between pt-7 pb-3.5 group items-center transition-all duration-[0.75s] border border-white/10 hover:border-[#ACAB4F]/38 relative before:absolute before:min-h-[10px] before:min-w-[10px] before:transition-all before:duration-[0.75s] before:border-white/10 hover:before:border-[#ACAB4F] after:transition-all after:duration-[0.75s] after:border-white/10 hover:after:border-[#ACAB4F] before:border-t-[3px] before:border-l-[3px] before:top-[-2px] before:left-[-2px] after:absolute after:h-[10px] after:w-[10px] after:border-t-[3px] after:border-r-[3px] after:top-[-2px] after:right-[-2px] backdrop-blur-[3px]">
@@ -14,7 +19,7 @@ function TeamsCard({ img, name, position, linkedin, github }) {
         <div className="relative flex justify-center">
           <div className="relative w-28 h-28 overflow-hidden rounded-lg">
             <Image
-              src={img || NoImage}
+              src={imgSrc}
               alt="team"
               fill
               className="object-cover"
