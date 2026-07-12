@@ -172,7 +172,7 @@ const Events = () => {
         setLoading(true);
 
         const data = await client.fetch(`
-          *[_type == "event"] | order(date desc){
+          *[_type == "event"] | order(date desc, _createdAt desc){
             _id,
             name,
             event_short_desc,
