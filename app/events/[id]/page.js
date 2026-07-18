@@ -49,6 +49,7 @@ const EventDetailsPage = () => {
             event_content,
             event_venue,
             year,
+            date_label,
             cover_image{
               asset->{
                 url
@@ -160,11 +161,11 @@ const EventDetailsPage = () => {
 
             {/* Metadata */}
             <div className="flex flex-wrap items-center gap-5 sm:gap-6 mt-6 sm:mt-8">
-              {event.year && (
+              {(event.year || event.date_label) && (
                 <div className="flex items-center gap-2 text-[#ABA9A7]">
                   <Calendar className="w-4.01 h-4 text-[#FFD022]" />
                   <span className="font-martian-mono text-sm sm:text-base">
-                    {event.year}
+                    {event.date_label || event.year}
                   </span>
                 </div>
               )}
@@ -258,13 +259,13 @@ const EventDetailsPage = () => {
                     Event Details
                   </h3>
                   <div className="space-y-3 sm:space-y-4">
-                    {event.year && (
+                    {(event.year || event.date_label) && (
                       <div>
                         <span className="font-martian-mono text-xs sm:text-sm text-[#ABA9A7] uppercase tracking-wider">
-                          Year
+                          {event.date_label ? "Date" : "Year"}
                         </span>
                         <p className="font-martian-mono text-sm sm:text-base text-white mt-1">
-                          {event.year}
+                          {event.date_label || event.year}
                         </p>
                       </div>
                     )}

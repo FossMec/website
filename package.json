@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "migrate:team": "node scripts/migrateTeamToSanity.mjs",
+    "migrate:team:dry": "node scripts/migrateTeamToSanity.mjs --dry-run",
+    "import:team": "node scripts/importTeamCsv.mjs",
+    "import:team:dry": "node scripts/importTeamCsv.mjs --dry-run"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
