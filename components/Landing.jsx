@@ -11,8 +11,9 @@ const Landing = () => {
       <div className="absolute -top-2 left-0 inset-0 z-[0] overflow-hidden">
         <Image
           src={landingBg}
-          alt="Background image"
+          alt="FOSSMEC landing background"
           fill
+          priority
           className="object-cover"
         />
       </div>
