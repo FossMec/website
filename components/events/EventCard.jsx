@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { HiCursorClick } from "react-icons/hi";
 import Image from "next/image";
 
@@ -8,6 +8,7 @@ const useDraggable = (initialPosition, onPositionChange) => {
   const [position, setPosition] = React.useState(initialPosition);
   const [isDragging, setIsDragging] = React.useState(false);
   const [hasMoved, setHasMoved] = React.useState(false);
+  const hasMovedRef = useRef(false);
   const [dragOffset, setDragOffset] = React.useState({ x: 0, y: 0 });
   const [startPosition, setStartPosition] = React.useState({ x: 0, y: 0 });
   const elementRef = useRef(null);
@@ -24,6 +25,7 @@ const useDraggable = (initialPosition, onPositionChange) => {
     });
     setIsDragging(true);
     setHasMoved(false);
+    hasMovedRef.current = false;
   };
 
   const handleMouseMove = (e) => {
@@ -38,6 +40,7 @@ const useDraggable = (initialPosition, onPositionChange) => {
     );
 
     if (moveDistance > 5) {
+      hasMovedRef.current = true;
       setHasMoved(true);
     }
 
@@ -83,6 +86,7 @@ const useDraggable = (initialPosition, onPositionChange) => {
     handleMouseDown,
     isDragging,
     hasMoved,
+    hasMovedRef,
   };
 };
 
@@ -96,7 +100,6 @@ export const EventCard = ({
   onCardClick,
   backContent,
 }) => {
-  const router = useRouter();
   const [isHovered, setIsHovered] = React.useState(false);
   const [hasInteracted, setHasInteracted] = React.useState(false);
 
@@ -117,11 +120,13 @@ export const EventCard = ({
   const isInCarousel = !onDragEnd || position === undefined;
 
   const handleCardClick = (e) => {
-    console.log("Card clicked", id);
-    if (!isInCarousel && !hasMoved) {
-      router.push(`/events/${id}`);
-    } else if (isInCarousel) {
-      router.push(`/events/${id}`);
+  //If the card was dragged/moved, prevent navigating
+    if (!isInCarousel && (hasMoved || hasMovedRef.current)) {
+      e.preventDefault();
+      return;
+    } 
+    if (onCardClick) {
+      onCardClick(id);
     }
   };
 
@@ -134,11 +139,10 @@ export const EventCard = ({
     <div
       ref={elementRef}
       className={`relative ${
-        isInCarousel ? "w-full h-full cursor-pointer" : ""
+        isInCarousel ? "w-full h-full" : ""
       }`}
       onMouseDown={!isInCarousel ? onMouseDownWrapper : undefined}
       onTouchStart={!isInCarousel ? onMouseDownWrapper : undefined}
-      onClick={handleCardClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={
@@ -162,12 +166,18 @@ export const EventCard = ({
             }
       }
     >
+      <Link 
+        href={`/events/${id}`} 
+        onClick={handleCardClick} 
+        draggable={false}
+        onDragStart={(e) => e.preventDefault()}
+        className="block w-full h-full">
       <div className="w-full h-full flex flex-col justify-between pt-6 px-6 pb-3.5 group items-center transition-all duration-[0.75s] border border-white/10 hover:border-[#ACAB4F]/38 relative before:absolute before:min-h-[10px] before:min-w-[10px] before:transition-all before:duration-[0.75s] before:border-white/10 hover:before:border-[#ACAB4F] after:transition-all after:duration-[0.75s] after:border-white/10 hover:after:border-[#ACAB4F] before:border-t-[3px] before:border-l-[3px] before:top-[-2px] before:left-[-2px] after:absolute after:h-[10px] after:w-[10px] after:border-t-[3px] after:border-r-[3px] after:top-[-2px] after:right-[-2px] backdrop-blur-[1px] bg-[#121f38]">
         <div className="absolute h-full w-full before:absolute before:min-h-[10px] z-20 top-0 before:min-w-[10px] before:transition-all before:duration-[0.75s] before:border-white/10 group-hover:before:border-[#ACAB4F] after:transition-all after:duration-[0.75s] after:border-white/10 hover:after:border-[#ACAB4F] before:border-b-[3px] before:border-l-[3px] before:bottom-[-2px] before:left-[-2px] after:absolute after:h-[10px] after:w-[10px] after:border-b-[3px] after:border-r-[3px] after:bottom-[-2px] after:right-[-2px]" />
         <div className="h-[75%] w-full relative">
           <Image
             src={image}
-            alt="Event background"
+            alt={`${title} - FOSS MEC Event`}
             className="w-full h-full object-cover"
             draggable="false"
             width={400}
@@ -175,14 +185,15 @@ export const EventCard = ({
           />
         </div>
         <div className="relative w-full flex justify-between items-center mt-4">
-          <h2 className="font-uncut-sans font-medium text-[18px] leading-[20px] tracking-[0px] text-white/80">
+          <h3 className="font-uncut-sans font-medium text-[18px] leading-[20px] tracking-[0px] text-white/80">
             {title}
-          </h2>
+          </h3>
           <div className="text-white/80 hover:text-white transition-colors p-2 bg-white/6 rounded-md !cursor-pointer">
             <HiCursorClick size={20} />
           </div>
         </div>
-      </div>
+        </div>
+      </Link>
     </div>
   );
 };
