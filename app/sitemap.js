@@ -3,31 +3,12 @@ import { client } from "@/sanity/lib/client";
 export default async function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://foss.mec.ac.in";
 
-  // 1. Static sections of the website
+  // 1. Static routes (exclude client-side hash #links as crawlers ignore them)
   const staticRoutes = [
     {
       url: `${baseUrl}`,
-      lastModified: new Date(),
       changeFrequency: "daily",
       priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/#about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#events`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#team`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
     },
   ];
 
@@ -44,7 +25,7 @@ export default async function sitemap() {
     if (Array.isArray(events)) {
       eventRoutes = events.map((event) => ({
         url: `${baseUrl}/events/${event._id}`,
-        lastModified: event._updatedAt ? new Date(event._updatedAt) : new Date(),
+        ...(event._updatedAt ? { lastModified: new Date(event._updatedAt) } : {}),
         changeFrequency: "weekly",
         priority: 0.8,
       }));
