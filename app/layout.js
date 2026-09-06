@@ -55,8 +55,59 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://foss.mec.ac.in"
+  ),
+
   title: "FOSS MEC | Free and Open Source Software Community at MEC",
-  description: "FOSS MEC is a non-profit foundation dedicated to promoting and strengthening the Free and Open Source Software (FOSS) ecosystem within the MEC community.",
+
+  description:
+    "FOSS MEC is a non-profit foundation dedicated to promoting and strengthening the Free and Open Source Software (FOSS) ecosystem within the MEC community.",
+
+  alternates: {
+    canonical: "/",
+  },
+
+  openGraph: {
+    title: "FOSS MEC | Free and Open Source Software Community at MEC",
+    description:
+      "FOSS MEC is a non-profit foundation dedicated to promoting and strengthening the Free and Open Source Software ecosystem within the MEC community.",
+    url: "/",
+    siteName: "FOSS MEC",
+    locale: "en_IN",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FOSS MEC - Free and Open Source Software Community at MEC",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    site: "@FossMec",
+    creator: "@FossMec",
+    images: ["/og-image.png"],
+  },
+
+  keywords: [
+    "FOSS MEC",
+    "Model Engineering College",
+    "MEC Kochi",
+    "open source community",
+    "hackathons",
+    "workshops",
+    "student developers",
+    "Kerala tech community",
+  ],
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }) {
