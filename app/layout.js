@@ -57,6 +57,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "FOSS MEC | Free and Open Source Software Community at MEC",
   description: "FOSS MEC is a non-profit foundation dedicated to promoting and strengthening the Free and Open Source Software (FOSS) ecosystem within the MEC community.",
+  verification: {
+    google: "vLpk3rwkMnlTYm9aCkRg0uzjFJgtqE3LCQmkv0ohx7k",
+  },
 };
 
 export default function RootLayout({ children }) {
