@@ -41,13 +41,13 @@ const Team = () => {
       id="team"
     >
       <div className="w-full relative h-fit flex mt-40 text-center flex-col items-center">
-        <h1
+        <h2
           className={
             "font-uncut-sans-var font-semibold italic sm:text-start top-0 px-8 sm:px-16 lg:px-32 text-3xl md:text-4xl leading-[100%] tracking-[-0.04em] align-middle capitalize text-transparent bg-clip-text bg-gradient-to-r from-[#C0AE42] via-[#379CA2] to-[#2C7FDC]"
           }
         >
           {"<"}MEET THE TEAM!{">"}
-        </h1>
+        </h2>
         <div className="w-fit mt-6 max-md:scale-90">
           <div className="relative">
             <select

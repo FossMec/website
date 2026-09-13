@@ -20,7 +20,7 @@ function TeamsCard({ img, name, position, linkedin, github }) {
           <div className="relative w-28 h-28 overflow-hidden rounded-lg">
             <Image
               src={imgSrc}
-              alt="team"
+              alt={`${name} - ${position} at FOSS MEC`}
               fill
               className="object-cover"
             />
@@ -33,6 +33,7 @@ function TeamsCard({ img, name, position, linkedin, github }) {
                   href={linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`${name}'s LinkedIn profile`}
                   className={`bg-black/60 backdrop-blur-2xl text-white px-1.5 py-1 flex items-center justify-center border-r border-white/20 hover:bg-black/45 transition ${
                     !github ? "rounded-md" : "rounded-l-md"
                   }`}
@@ -45,6 +46,7 @@ function TeamsCard({ img, name, position, linkedin, github }) {
                   href={github}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`${name}'s GitHub profile`}
                   className={`bg-black/60 backdrop-blur-2xl text-white px-1.5 py-1 flex items-center justify-center border-white/20 hover:bg-black/45 transition ${
                     !linkedin ? "rounded-md" : "rounded-r-md"
                   }`}
@@ -57,14 +59,14 @@ function TeamsCard({ img, name, position, linkedin, github }) {
         </div>
 
         <div className="relative w-full flex justify-center items-center flex-col grow my-4">
-          <h2 className="font-uncut-sans font-medium text-sm leading-tight tracking-[0px] text-center align-middle uppercase text-white/80">
+          <h3 className="font-uncut-sans font-medium text-sm leading-tight tracking-[0px] text-center align-middle uppercase text-white/80">
             {name}
-          </h2>
-          <h3 className="font-dm-mono font-normal text-xs min-h-6 relative tracking-[0.3px] text-center align-middle text-white/54">
+          </h3>
+          <p className="font-dm-mono font-normal text-xs min-h-6 relative tracking-[0.3px] text-center align-middle text-white/54">
             <span className="absolute text-center w-full min-w-[100px] mx-auto translate-x-[-50%] py-1.5">
               {position}
             </span>
-          </h3>
+          </p>
         </div>
       </div>
     </div>

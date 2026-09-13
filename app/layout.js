@@ -1,36 +1,36 @@
 import "./globals.css";
 import { Geist, Geist_Mono, Gamja_Flower } from "next/font/google";
-import localFont from 'next/font/local';
+import localFont from "next/font/local";
 
 const offbit = localFont({
-  src: '../assets/fonts/OffBit-Bold.ttf',
-  variable: '--font-offbit',
+  src: "../assets/fonts/OffBit-Bold.ttf",
+  variable: "--font-offbit",
 });
 
 const uncutSansVar = localFont({
   src: [
     {
-      path: '../assets/fonts/UncutSans-Regular.woff',
-      weight: '400',
-      style: 'normal',
+      path: "../assets/fonts/UncutSans-Regular.woff",
+      weight: "400",
+      style: "normal",
     },
     {
-      path: '../assets/fonts/UncutSans-Variable.ttf',
-      weight: '400 700',
-      style: 'normal',
+      path: "../assets/fonts/UncutSans-Variable.ttf",
+      weight: "400 700",
+      style: "normal",
     },
   ],
-  variable: '--font-uncutSans',
+  variable: "--font-uncutSans",
 });
 
 const dmMono = localFont({
-  src: '../assets/fonts/DMMono-Regular.ttf',
-  variable: '--font-dmMono',
+  src: "../assets/fonts/DMMono-Regular.ttf",
+  variable: "--font-dmMono",
 });
 
 const martianMono = localFont({
-  src: '../assets/fonts/MartianMono-Variable.ttf',
-  variable: '--font-martianMono',
+  src: "../assets/fonts/MartianMono-Variable.ttf",
+  variable: "--font-martianMono",
 });
 
 const redditMono = localFont({
@@ -107,6 +107,10 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+
+  verification: {
+    google: "vLpk3rwkMnlTYm9aCkRg0uzjFJgtqE3LCQmkv0ohx7k",
   },
 };
 

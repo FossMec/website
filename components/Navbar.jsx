@@ -24,7 +24,7 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
   }, []);
 
   return (
-    <div
+    <header
       className={`flex flex-col px-5 md:px-15 fixed top-0 left-0 w-full z-100 transition-all duration-300 
         ${mobileMenuOpen ? "h-auto" : "h-[89px]"}
         ${
@@ -44,6 +44,7 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
         <div className="md:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
             className="text-white focus:outline-none"
           >
             {mobileMenuOpen ? (
@@ -80,7 +81,9 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
           </button>
         </div>
 
-        <div className="hidden md:flex items-center gap-10 font-martian-mono">
+        <nav 
+          aria-label="Main navigation"
+          className="hidden md:flex items-center gap-10 font-martian-mono">
           <a
             href={isEventPage ? "/#home" : "#home"}
             className="text-[14px] hover:text-white/80 transition-colors"
@@ -132,7 +135,7 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
               JOIN FOSS
             </button>
           </div>
-        </div>
+        </nav>
       </div>
 
       <div
@@ -196,7 +199,7 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
           </a>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
